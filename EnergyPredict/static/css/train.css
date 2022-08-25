@@ -1,0 +1,143 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.back_div{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #E7E6E6;
+}
+.mail_ul{
+    height: 3rem;
+}
+.mail_user{
+    height: 1.2rem;
+    width: 1.2rem;
+    margin-bottom: 0.2rem;
+}
+.fontdaohang{
+    color: #c1d5f3;
+    font-size: 1rem;
+    font-family:"Microsoft YaHei",微软雅黑;
+    line-height: 3rem;
+}
+.content{
+    width: 100%;
+    position: absolute;
+    top: 3rem;
+    bottom: 0px;
+    left: 0px;
+    background-color: #b2cdfe;
+}
+.left_div{
+    width: 4%;
+    height: 100%;
+    float: left;
+    background-color: #b2cdfe;
+}
+.right_div{
+    width: 96%;
+    height: 100%;
+    float: left;
+}
+.sm_title{
+    width: 100%;
+    /* height: 2.6rem; */
+    margin-bottom: 0.4rem;
+    cursor: pointer;
+    
+}
+.sm_line_div{
+    height: 2.6rem;
+    width: 8%;
+    float: left;
+}
+.sm_title_font{ 
+    line-height: 2.6rem;
+    color: #488bcf;
+    text-align: center;
+    font-size: 0.8rem;
+}
+.sm_title:hover .sm_line_div{
+    background: #2693F3;
+}
+.sm_title:hover .sm_title_font{
+    background-image: linear-gradient(to right, #2693f350, rgba(0, 70, 128, 0.233));
+}
+.cen_btn{
+    margin-left: 0.625rem;
+    background-color: #2196F3;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    float: left;
+    left: 16%;
+    width: 47%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 400;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.sml_btn{
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #2196F3;
+    width: 27%;
+
+    float: left;
+    margin-left: 0.3rem;
+    padding-top: 0.3rem;
+}
+.sml_btn_font{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 400;
+    font-size: 0.6rem;
+    line-height: 100%;
+    cursor: pointer;
+}
+.adjustbtn{
+    float: left;
+    width: 20%;
+    height: 100%;
+    background:#2196F3;
+    border-radius: 5px;
+    align-items: center;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+}
+.bigbtn{
+    margin-left:0.625rem;
+    margin-right:0.625rem;
+    background:#2196F3;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 400;
+    font-size: 1rem;
+    cursor: pointer;
+}
+.pic_btn{
+    height:10%;
+    background: #A5A5A5;
+    width: 20%;
+    border-radius: 5px;
+    font-size:1rem;
+    color:#ffffff;
+    font-family: 'Microsoft YaHei',微软雅黑;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

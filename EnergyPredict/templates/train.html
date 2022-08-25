@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training</title>
+    <link rel="stylesheet" href="/static/css/train.css">
+    <link rel="stylesheet" href="/static/layui/layui-v2.5.7/layui/css/layui.css">
+    <script src="/static/layui/layui-v2.5.7/layui/layui.js"></script>
+    <link href="/static/bootstrap/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/static/bootstrap/bootstrap/js/html5shiv.min.js"></script>
+    <script src="/static/bootstrap/bootstrap/js/respond.min.js"></script>
+    <script src="/static/bootstrap/bootstrap/js/jquery.min.js"></script>
+    <script src="/static/bootstrap/bootstrap/js/bootstrap.min.js"></script>
+    <style>
+        .divContrast{
+            position: relative;
+            float: left;
+            padding-top: 6%;
+            padding-left: 6%;
+        }
+        .divLoss{
+            position: relative;
+            float: left;
+            padding-top: 6%;
+            padding-left: 6%;
+        }
+        .contrast{
+            position: relative;
+            width: 400px;
+            height: 300px;
+        }
+        .loss{
+            position: relative;
+            width: 400px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="back_div">
+        <!--上侧内容-->
+        <div style="width: 100%;height: 3rem;background: #3366CC;border-bottom:0.1rem solid white">
+            <ul class="layui-nav mail_ul" style="background: #3366CC;">
+                <br>
+                <center>训练模块</center>
+            </ul>
+        </div>
+        <!--下侧内容-->
+        <div class="content">
+            <div class="left_div" style="background-color: #f7f7f7;">
+                <div class="sm_title" id="pre">
+                    <div class="sm_line_div"></div>
+                    <div class="sm_title_font"><a href="http://127.0.0.1:8000/predict/">预测</a></div>
+                </div>
+                <div class="sm_title" id="train">
+                    <div class="sm_line_div"></div>
+                    <div class="sm_title_font"><a href="http://127.0.0.1:8000/train/">训练模型</a></div>
+                </div>
+            </div>
+            <div class="right_div" style=" background-color: #e6e6e6;">
+                <div class="row" style="height:100%;width: 100%;margin: 0;padding: 0;">
+                    <!--参数-->
+                    <div style="height:100%;border-right:0.2rem solid white;float: left;width: 23%;overflow-y: auto;overflow-x: hidden;">
+                       
+                        <div class="col-xs-12" style="height: 2.5%;"></div>
+                            <div class="col-xs-12" style="height: 96%;padding: 0;margin: 0;">
+                                <div style="background-color: #E7E6E6;width: 96%;height: 100%;left:4%;position: absolute;border-radius: 5px;">
+                                    <center><p>样本文件&nbsp;&nbsp;<a href="http://127.0.0.1:8000/download/">样本样例</a></p></center>
+                                    <form action="http://127.0.0.1:8000/train/" method="POST" enctype="multipart/form-data">
+                                        <div class="row" style="padding: 0;margin: 0;margin-top: 1.625rem;">
+                                            <div style="width: 30%;margin-left: 0.3rem;">
+                                                <center><input type="file" name="file"></center>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <center><p>样本中输入参数(默认为12个参数)</p></center>
+                                        <center><input type="text" name="xsize" value="12" width="10px"></center>
+                                        <br>
+                                        <center><p>样本中输出结果(默认为3个结果)</p></center>
+                                        <center><input type="text" name="ysize" value="3"></center>
+                                        <br>
+                                        <center><p>模型名称(xxx.pt的格式)</p></center>
+                                        <br>
+                                        <center><p>模型名不要与之前的模型重复</p></center>
+                                        <center>
+                                            <input type="text" value="maml5LayerRelu.pt" name="ptfilename">
+                                        </center>
+                                        <br>
+                                        <center><input style="width: 5rem;" type="submit" value="开始"></center>
+                                    </form>
+                                    <br><br><br><br><br><br><br><br><br><br>获取模型训练细节<br>
+                                    <form action="http://127.0.0.1:8000/download/" method="POST">
+                                        <p style="color: #e6151f;">tips:&nbsp;选择模型训练记录时，若找不到刚刚训练模型的记录，是因为后台程序正在训练，请稍等一会后刷新即可看到</p>
+                                        <center>
+                                            <input type="text" name="Form1ng" list="modelList">
+                                            <datalist id="modelList">
+                                                <option>maml5LayerRelu.pt</option>
+                                            </datalist>
+                                        </center>
+                                        <br>
+                                        <center>
+                                            <input style="width: 5rem;" type="submit" value="获取">
+                                        </center>
+                                    </form>
+                                </div>
+                            </div>
+                    </div>
+                        <div class="divContrast">
+                            {% if judge %}
+                                <table border="0">
+                                    <tr>
+                                        <th><center>预测结果图</center></th>
+                                    </tr>
+                                    <tr><th>&nbsp;</th></tr>
+                                    <center><p></p></center>
+                                    <tr><th>&nbsp;</th></tr>
+                                    <tr>
+                                        <th><img class="contrast" src="{{filepathContrast}}" ></th>
+                                    </tr>
+                                    <tr><th>&nbsp;</th></tr>
+                                    <tr>
+                                        <th><p><a href="http://127.0.0.1:8000/download/?filename={{imagepathContrast}}">下载</a></p></th>
+                                    </tr>
+                                </table>
+                            {% endif %}
+                        </div>
+                        <div class="divLoss">
+                            {% if judge %}
+                                <table border="0">
+                                    <tr>
+                                        <th><center>预测误差图</center></th>
+                                    </tr>
+                                    <tr><th>&nbsp;</th></tr>
+                                    <center><p>Y值越接近零预测的效果越好</p></center>
+                                    <tr><th>&nbsp;</th></tr>
+                                    <tr>
+                                        <th><img class="loss" src="{{filepathLoss}}" ></th>
+                                    </tr>
+                                    <tr><th>&nbsp;</th></tr>
+                                    <tr>
+                                        <th><p><a href="http://127.0.0.1:8000/download/?filename={{imagepathLoss}}">下载</a></p></th>
+                                    </tr>
+                                </table>
+                            {% endif %}
+                        </div>
+                        {% if JUDGE %}
+                            <div class="Form1ng" style="margin-left: 12rem;float: left;width: 30rem;height: 100%;">
+                                <br><br><br><br><br><br><br><br>
+                                <center><p><font style="inline-size: 2rem;">输入有误后端无法训练模型</font></p></center>
+                            </div>
+                        {% endif %}
+                        {% if Judge %}
+                            <div class="Form1ng" style="margin-left: 12rem;float: left;width: 30rem;height: 100%;">
+                                <br><br><br><br><br><br><br><br>
+                                <center><p><font style="inline-size: 2rem;">模型正在训练请五分钟后刷新获取训练详细参数</font></p></center>
+                            </div>
+                        {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <script type="text/javascript">
+        layui.use(['element', 'jquery', 'laydate', 'form', 'layedit'], function () {
+            var $ = layui.jquery;
+            var element = layui.element;
+            var laydate = layui.laydate;
+            var form = layui.form;
+            var layedit = layui.layedit;
+        });
+    </script>
+</body>
+</html>

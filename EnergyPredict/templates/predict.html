@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>predict</title>
+
+    <link rel="stylesheet" href="/static/layui/layui-v2.5.7/layui/css/layui.css">
+    <link rel="stylesheet" href="/static/css/predict.css">
+    <script src="/static/layui/layui-v2.5.7/layui/layui.js"></script>
+    <link href="/static/bootstrap/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/static/bootstrap/bootstrap/js/html5shiv.min.js"></script>
+    <script src="/static/bootstrap/bootstrap/js/respond.min.js"></script>
+    <script src="/static/bootstrap/bootstrap/js/jquery.min.js"></script>
+    <script src="/static/bootstrap/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+        function changeMsAttr(){
+            var classes = document.getElementsByClassName('ms')
+            var judge = classes[0].style.display
+            if(judge == 'none'){
+                classes[0].style.display = 'flex'
+                classes[1].style.display = 'flex'
+                classes[2].style.display = 'flex'
+                classes[3].style.display = 'flex'
+                classes[4].style.display = 'flex'
+                classes[5].style.display = 'flex'
+                classes[6].style.display = 'flex'
+            }else{
+                classes[0].style.display = 'none'
+                classes[1].style.display = 'none'
+                classes[2].style.display = 'none'
+                classes[3].style.display = 'none'
+                classes[4].style.display = 'none'
+                classes[5].style.display = 'none'
+                classes[6].style.display = 'none'
+            }
+        }
+
+        function changeGuessAttr(){
+            var forming = document.getElementsByClassName('guess')
+            var FORMING = forming[0].style.display
+            if(FORMING == 'none'){
+                forming[0].style.display = 'flex'
+                forming[1].style.display = 'flex'
+                forming[2].style.display = 'flex'
+            }else{
+                forming[0].style.display = 'none'
+                forming[1].style.display = 'none'
+                forming[2].style.display = 'none'
+            }
+        }
+    </script>
+</head>
+<body>
+    <!--上侧内容-->
+    <div style="width: 100%;height: 3rem;">
+        <ul class="layui-nav mail_ul" style="background: #50575f71;border-bottom:0.1rem solid white">
+            <br>
+            <center>预测模块</center>
+        </ul>
+    </div>
+    <!--下侧内容-->
+    <div class="content" style="width: 100%;position: absolute;top: 3rem;bottom: 0px;left: 0px;">
+        <!--跳转部分-->
+        <div class="left_div" style=" background-color: #f7f7f7;">
+            <div class="sm_title" id="pre">
+                <div class="sm_line_div"></div>
+                <div class="sm_title_font"><a href="http://127.0.0.1:8000/predict/">预测</a></div>
+            </div>
+            <div class="sm_title" id="train">
+                <div class="sm_line_div"></div>
+                <div class="sm_title_font"><a href="http://127.0.0.1:8000/train/">训练模型</a></div>
+            </div>
+        </div>
+        <!--预测输入参数部分-->
+        <div class="right_div" style="width: 35%;height: 100%;float: left;">
+            <div style="height:100%;float: left;margin-right:1rem;background-color: #e6e6e6de;">
+                <div class="row" style="padding: 0rem;margin: 1rem;border-style: none;">
+                    <label style="width: 12rem;line-height: 4rem;margin-left: 12rem">预测请输入如下参数</label>
+                    <form action="http://127.0.0.1:8000/predict/" method="POST" enctype="multipart/form-data">
+                        <div class="row-item" style="margin-bottom:0.15rem;">    
+                            <div style="width: 30rem;margin-left: 0.5rem">
+                                <label style="width: 8rem;line-height: 2rem;float:left">异固化剂所用组分</label>
+                                <input style="width: 27%;height: 100%;border:0.01rem solid grey;height: 2rem;border-radius: 5px;" name="componentOne" type="text" value="">
+                                <label style="line-height: 2rem;">百分比</label>&nbsp;<input style="width: 5%;height: 100%;border:0.01rem solid grey;height: 2rem;border-radius: 5px;" name="percentOne" type="text" value="40"><label style="line-height: 2rem;">%</label>
+                                <label style="line-height: 2rem;">体积</label>&nbsp;<input style="width: 5%;height: 100%;border:0.01rem solid grey;height: 2rem;border-radius: 5px;" name="NCOvol" type="text"><label style="line-height: 2rem;">&nbsp;ml</label>
+                            </div>
+                        </div>
+
+                        <div class="row-item" style="margin-bottom:0.15rem;">
+                            <div style="width: 30rem;margin-left: 0.5rem">
+                                <label style="width: 8rem;line-height: 2rem;float:left">粘合剂所用组分</label>
+                                <input style="width: 27%;height: 100%;border:0.01rem solid grey;height: 2rem;border-radius: 5px;" name="componentTwo" type="text" value="">
+                                <label style="line-height: 2rem;">百分比</label>&nbsp;<input style="width: 5%;height: 100%;border:0.01rem solid grey;height: 2rem;border-radius: 5px;" name="percentTwo" type="text" value="60"><label style="line-height: 2rem;">%</label>
+                                <label style="line-height: 2rem;">体积</label>&nbsp;<input style="width: 5%;height: 100%;border:0.01rem solid grey;height: 2rem;border-radius: 5px;" name="OHvol" type="text"><label style="line-height: 2rem;">&nbsp;ml</label>
+                            </div>
+                        </div>
+
+                        <div class="row-item" style="margin-bottom:0.15rem;">
+                            <div style="width: 30rem;margin-left: 0.5rem;display:flex">
+                                <label style="width: 8rem;line-height: 2rem;">温度</label>
+                                <input style="width: 27%;height: 100%;border:0.01rem solid grey;height: 2rem;border-radius: 5px;" name="temprature" type="text"><label style="line-height: 2rem;">&nbsp;k</label>
+                            </div>
+                        </div>
+
+                        <div class="row-item" style="margin-bottom:0.15rem;">
+                            <div style="width: 30rem;margin-left: 0.5rem;display:flex">
+                                <label style="width: 8rem;line-height: 2rem;float:left">调用模型</label>
+                                <input list="modelList" style="width: 27%;height: 100%;border:0.01rem solid grey;height: 2rem;border-radius: 5px;" type="text" name="modelname">
+                                <datalist name="modelName" id="modelList">
+                                    <option>maml5LayerRelu.pt</option>
+                                </datalist>
+                            </div>
+                        </div>
+
+                        <div class="row-item" style="margin-bottom:0.15rem;">
+                            <div class="show" style="width: 30rem;margin-left: 0.5rem;display:flex;">
+                                <label class="show" style="width: 30rem;line-height: 2rem;float:left" onclick="javascript:changeGuessAttr()">通过高斯回归计算所得到的参数</label>
+                            </div>
+                        </div>
+
+                        <div class="row-item" style="margin-bottom:0.15rem;">
+                            <div class="guess" style="width: 30rem;margin-left: 0.5rem;display:none">
+                                <label style="width: 8rem;line-height: 2rem;float:left">CO_W</label>
+                                <input style="width: 27%;height: 100%;border:0.01rem solid grey;height: 2rem;border-radius: 5px;" name="CO_W" type="text">
+                                &nbsp;<label style="width: 12rem;line-height: 2rem;float:left">通过高斯回归计算所得</label>
+                            </div>
+                        </div>
+
+                        <div class="row-item" style="margin-bottom:0.15rem;">
+                            <div class="guess" style="width: 30rem;margin-left: 0.5rem;display:none">
+                                <label style="width: 8rem;line-height: 2rem;float:left">NH_W</label>
+                                <input style="width: 27%;height: 100%;border:0.01rem solid grey;height: 2rem;border-radius: 5px;" name="NH_W" type="text">
+                                &nbsp;<label style="width: 12rem;line-height: 2rem;float:left">通过高斯回归计算所得</label>
+                            </div>
+                        </div>
+
+                        <div class="row-item" style="margin-bottom:0.15rem;">
+                            <div class="guess" style="width: 30rem;margin-left: 0.5rem;display:none">
+                                <label style="width: 8rem;line-height: 2rem;float:left">NH_A</label>
+                                <input style="width: 27%;height: 100%;border:0.01rem solid grey;height: 2rem;border-radius: 5px;" name="NH_A" type="text">
+                                &nbsp;<label style="width: 12rem;line-height: 2rem;float:left">通过高斯回归计算所得</label>
+                            </div>
+                        </div>
+
+                        <div class="row-item" style="margin-bottom:0.15rem;">
+                            <div class="show" style="width: 30rem;margin-left: 0.5rem;display:flex">
+                                <label class="show" style="width: 30rem;line-height: 2rem;float:left" onclick="javascript:changeMsAttr()">通过Materials studio所得到的参数</label>
+                            </div>
+                        </div>
+
+                        <div class="row-item" style="margin-bottom:0.15rem;">
+                            <div class="ms" style="width: 30rem;margin-left: 0.5rem;display:none">
+                                <label style="width: 8rem;line-height: 2rem;float:left">CED</label>
+                                <input style="width: 27%;border:0.01rem solid grey;height: 100%;height: 2rem;border-radius: 5px;" name="CED" type="text">
+                                &nbsp;<label style="width: 12rem;line-height: 2rem;float:left">通过materials studio计算所得</label>
+                            </div>
+                        </div>
+
+                        <div class="row-item" style="margin-bottom:0.15rem;">
+                            <div class="ms" style="width: 30rem;margin-left: 0.5rem;display:none">
+                                <label style="width: 8rem;line-height: 2rem;float:left">solubility</label>
+                                <input style="width: 27%;border:0.01rem solid grey;height: 100%;height: 2rem;border-radius: 5px;" name="solubility" type="text">
+                                &nbsp;<label style="width: 12rem;line-height: 2rem;float:left">通过materials studio计算所得</label>
+                            </div>
+                        </div>
+
+                        <div class="row-item" style="margin-bottom:0.15rem;">
+                            <div class="ms" style="width: 30rem;margin-left: 0.5rem;display:none">
+                                <label style="width: 8rem;line-height: 2rem;float:left">core_pctWgt</label>
+                                <input style="width: 27%;border:0.01rem solid grey;height: 100%;height: 2rem;border-radius: 5px;" name="core_pctWgt" type="text">
+                                &nbsp;<label style="width: 12rem;line-height: 2rem;float:left">通过materials studio计算所得</label>
+                            </div>
+                        </div>
+
+                        <div class="row-item" style="margin-bottom:0.15rem;">
+                            <div class="ms" style="width: 30rem;margin-left: 0.5rem;display:none">
+                                <label style="width: 8rem;line-height: 2rem;float:left">sol_pctWgt</label>
+                                <input style="width: 27%;border:0.01rem solid grey;height: 100%;height: 2rem;border-radius: 5px;" name="sol_pctWgt" type="text">
+                                &nbsp;<label style="width: 12rem;line-height: 2rem;float:left">通过materials studio计算所得</label>
+                            </div>
+                        </div>
+
+                        <div class="row-item" style="margin-bottom:0.15rem;">
+                            <div class="ms" style="width: 30rem;margin-left: 0.5rem;display:none">
+                                <label style="width: 8rem;line-height: 2rem;float:left">Mtw</label>
+                                <input style="width: 27%;border:0.01rem solid grey;height: 100%;height: 2rem;border-radius: 5px;" name="Mtw" type="text">
+                                &nbsp;<label style="width: 12rem;line-height: 2rem;float:left">通过materials studio计算所得</label>
+                            </div>
+                        </div>
+
+                        <div class="row-item" style="margin-bottom:0.15rem;">
+                            <div class="ms" style="width: 30rem;margin-left: 0.5rem;display:none">
+                                <label style="width: 8rem;line-height: 2rem;float:left">芳香</label>
+                                <input style="width: 27%;border:0.01rem solid grey;height: 100%;height: 2rem;border-radius: 5px;" name="Form1ng" type="text">
+                                &nbsp;<label style="width: 12rem;line-height: 2rem;float:left">通过materials studio计算所得</label>
+                            </div>
+                        </div>
+
+                        <div class="row-item" style="margin-bottom:0.15rem;">
+                            <div class="ms" style="width: 30rem;margin-left: 0.5rem;display:none">
+                                <label style="width: 8rem;line-height: 2rem;float:left">苯环</label>
+                                <input style="width: 27%;border:0.01rem solid grey;height: 100%;height: 2rem;border-radius: 5px;" name="benhuan" type="text">
+                                &nbsp;<label style="width: 12rem;line-height: 2rem;float:left">通过materials studio计算所得</label>
+                            </div>
+                        </div>
+                                <input type="hidden" name="judge" value="predict" >
+                        <center><input type="submit" value="预测" style="line-height: 2rem;width: 15rem;margin-top:0.5rem;margin-left: 0.5rem;border-radius: 5px;border:0.05rem solid #778899"></center>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--计算可中间值部分-->
+        <div class="math_div" style="width: 30%;height: 100%;float: left;margin-left: 0%;">
+            <div style="height:100%;float: left;margin-right:1rem;overflow-y: auto;overflow-x: hidden;background-color: #82888a;">
+                <div class="row" style="padding: 0rem;margin: 1rem;border-style: none;">
+                    <label style="width: 12rem;line-height: 4rem;margin-left: 12rem">预测所需参数</label>
+                    <form action="http://127.0.0.1:8000/predict/" method="POST">
+                        <div class="row-item" style="margin-bottom:0.5rem;">
+                            <div style="width: 30rem;margin-left: 0.5rem">
+                                <label style="width: 8rem;line-height: 2rem;float:left">异固化剂所用组分</label>
+                                <input style="width: 27%;height: 100%;border:0.01rem solid grey;height: 2rem;border-radius: 5px;" name="componentOne" type="text" value="">
+                                <label style="line-height: 2rem;">百分比</label>&nbsp;<input style="width: 5%;height: 100%;border:0.01rem solid grey;height: 2rem;border-radius: 5px;" name="percentOne" type="text" value="40"><label style="line-height: 2rem;">%</label>
+                                <label style="line-height: 2rem;">体积</label>&nbsp;<input style="width: 5%;height: 100%;border:0.01rem solid grey;height: 2rem;border-radius: 5px;" name="NCOvol" type="text"><label style="line-height: 2rem;">&nbsp;ml</label>
+                            </div>
+                        </div>
+
+                        <div class="row-item" style="margin-bottom:0.5rem;">
+                            <div style="width: 30rem;margin-left: 0.5rem">
+                                <label style="width: 8rem;line-height: 2rem;float:left">粘合剂所用组分</label>
+                                <input style="width: 27%;height: 100%;border:0.01rem solid grey;height: 2rem;border-radius: 5px;" name="componentTwo" type="text" value="">
+                                <label style="line-height: 2rem;">百分比</label>&nbsp;<input style="width: 5%;height: 100%;border:0.01rem solid grey;height: 2rem;border-radius: 5px;" name="percentTwo" type="text" value="60"><label style="line-height: 2rem;">%</label>
+                                <label style="line-height: 2rem;">体积</label>&nbsp;<input style="width: 5%;height: 100%;border:0.01rem solid grey;height: 2rem;border-radius: 5px;" name="OHvol" type="text"><label style="line-height: 2rem;">&nbsp;ml</label>
+                            </div>
+                        </div>
+
+                        <div class="row-item" style="margin-bottom:0.5rem;">
+                            <div style="width: 30rem;margin-left: 0.5rem;display:flex">
+                                <label style="width: 8rem;line-height: 2rem;">温度</label>
+                                <input style="width: 27%;height: 100%;border:0.01rem solid grey;height: 2rem;border-radius: 5px;" name="temprature" type="text"><label style="line-height: 2rem;">&nbsp;k</label>
+                            </div>
+                        </div>
+
+                        <div class="row-item" style="margin-bottom:0.5rem;">
+                            <div style="width: 30rem;margin-left: 0.5rem;display:flex">
+                                <label style="width: 8rem;line-height: 2rem;float:left">基团分子量</label>
+                                <input style="width: 27%;height: 100%;border:0.01rem solid grey;height: 2rem;border-radius: 5px;" name="jtNumber" type="text">
+                                &nbsp;<label style="width: 12rem;line-height: 2rem;float:left">通过人工检验所得</label>
+                            </div>
+                        </div>
+
+                        <div class="row-item" style="margin-bottom:0.5rem;">
+                            <div style="width: 30rem;margin-left: 0.5rem;display:flex">
+                                <label style="width: 30rem;line-height: 2rem;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;加设这一模块的意义在于左侧参数部分参数未获得的情况下，输入一定变量获取组分在某温度下R值、密度以及其它中间层参数，从而方便用户获取傅利叶红外光谱等参数。</label>
+                            </div>
+                        </div>
+                        <input type="hidden" name="judge" value="jisuan" >
+                        <center><input type="submit" value="计算" style="line-height: 2rem;width: 15rem;margin-top:0.5rem;margin-left: 0.5rem;border-radius: 5px;border:0.05rem solid #778899"></center>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--输出结果列-->
+        <div class="result" style="line-height: 2rem;margin: left 5rem;float: left;width: 25%;padding-left: 8rem;">
+            {% if judge %}
+                <table>
+                    <tr><th>Strain at Break</th></tr>
+                    <tr><th>{{strain}}</th></tr>
+                    <tr><th>Stress at break</th></tr>
+                    <tr><th>{{stress}}</th></tr>
+                    <tr><th>Tan delta</th></tr>
+                    <tr><th>{{tan}}</th></tr>
+                </table>
+            {% endif %}
+            {% if JUDGE%}
+                <table>
+                    <tr>
+                        <th>变量名称</th>
+                        <th>变量值</th>
+                    </tr>
+                    <tr>
+                        <th>异氰酸盐分子量</th>
+                        <th>{{hetemol}}</th>
+                    </tr>
+                    <tr>
+                        <th>多元醇分子量</th>
+                        <th>{{admol}}</th>
+                    </tr>
+                    <tr>
+                        <th>异氰酸酯分子量</th>
+                        <th>{{NCOmol}}</th>
+                    </tr>
+                    <tr>
+                        <th>羟基分子量</th>
+                        <th>{{OH}}</th>
+                    </tr>
+                    <tr>
+                        <th>链长</th>
+                        <th>{{chain}}</th>
+                    </tr>
+                    <tr>
+                        <th>R值</th>
+                        <th>{{R}}</th>
+                    </tr>
+                    <tr>
+                        <th>聚合物质量</th>
+                        <th>{{totalweight}}</th>
+                    </tr>
+                    <tr>
+                        <th>硬连接</th>
+                        <th>{{hard}}</th>
+                    </tr>
+                    <tr>
+                        <th>软连接</th>
+                        <th>{{soft}}</th>
+                    </tr>
+                    <tr>
+                        <th>OH重量</th>
+                        <th>{{OHweight}}</th>
+                    </tr>
+                    <tr>
+                        <th>NCO重量</th>
+                        <th>{{NCOweight}}</th>
+                    </tr>
+                </table>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

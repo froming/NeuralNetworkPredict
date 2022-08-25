@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <script type="text/javascript" src="/static/js/jquery.js"></script>
+    <style>
+        .login{
+            height: 60%;
+            width: 25%;
+            background-image: linear-gradient(rgba(37, 37, 37, 0.2),rgba(37, 37, 37, 0.9));
+            position: fixed;
+            left: 37.5%;
+            top: 23%;
+            box-shadow:rgb(29, 28, 28) 0px 0px 20px;
+            border-radius: 10px;
+        }
+        input::-webkit-input-placeholder { 
+            color: #999; 
+        } 
+        input:focus::-webkit-input-placeholder, input:hover::-webkit-input-placeholder { 
+            color: #c2c2c2; 
+        }
+        .inp{
+            position: relative;
+            width: 80%;
+            height: 20%;
+            background: rgb(234,239,245,1);
+            left: 10%;
+            border-radius: 6px;
+        }
+        .put{
+            position: relative;
+            height: 1.5rem;
+            width: 70%;
+            left: 7%;
+            border: none;
+            background: rgb(234,239,245,1);
+            top: 10%;
+            outline:medium;
+            float: left;
+        }
+        .denglu{
+            position: relative;
+            left: 7.5rem;
+            width: 8rem;
+            background-color: rgb(36, 102, 224) ;
+            font-weight:900;
+            font-size: 100%;
+            top: 25%;
+            cursor: pointer;
+            border-radius: 5rem;
+        }
+        .logo{
+            position: relative;
+            width: 100%;
+            height: 10%;
+            top: 13%;
+            
+        }
+        .forget{
+            position: relative;
+            color:#a6adb8;
+            left: 42%;
+            width: 25%;
+            float: left;
+            cursor: pointer;
+        }
+        .remember{
+            position: relative;
+            color:#a6adb8;
+            width: 30%;
+            float: left;
+            left: 10%;
+        }
+        .bot{
+            position: relative;
+            top: 33%;
+            width: 100%;
+           
+        }
+        .back{
+            position: relative;
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 2.3em;
+            color: white;
+        }
+        .btnpop2{
+            height: 8%;
+            width: 16%;
+            position: absolute;
+            top: 45%;
+            left: 42%;
+            background: rgba(47,48,49,0.9);
+            display: none;
+            border-radius: 5px;
+            text-align: center;
+            padding-top: 2%;
+            color: white;
+            z-index: 1005;
+        }
+        .bgimg{
+            position:fixed;
+            top: 0;
+            left: 0;
+            width:100%;
+            height:100%;
+            min-width: 1000px;
+            z-index:-10;
+            zoom: 1;
+            background: url('/static/images/earth.png');
+            background-color: #fff;
+            background-size: cover;
+            -webkit-background-size: cover;
+            -o-background-size: cover;
+            background-position: center 0;
+            }
+    </style>
+
+</head>
+<body >
+    <div class="bgimg"></div>
+    <div class="login">
+        <div class="logo" style="text-align: center">
+            <label class="back">欢迎登录</label>
+        </div>
+        <br><br><br><br><br><br>
+        <form action="http://127.0.0.1:8000/login/" method="POST">
+        <div class="inp" style="top:25%">
+            <div style="float: left;left: 4%;top:15%;position: relative;"><img  src="/static/images/login_icon_user.png"></div>
+            <input class="put" id="certificate" type="text" placeholder="用户名" name="username">
+        </div>
+        <br><br><br><br><br><br>
+        <div class="inp" style="top: 25%;" >
+            <div style="float: left;left: 4%;top:15%;position: relative;"><img src="/static/images/login_icon_psw.png"></div>
+            <input class="put" type="password" id="password"  placeholder="输入密码" name="password">
+        </div>
+        <br><br><br><br>
+        <input value="登陆" type="submit" class="denglu">
+        </form>
+        <div style="bottom: 7%;position: absolute;right: 5%;">
+            <a href="http://127.0.0.1:8000/register" >立即注册</a>
+        </div>
+    </div>
+
+</body>
+</html>
