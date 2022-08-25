@@ -1,6 +1,10 @@
 # NeuralNetworkPredict
 <1>DESCRIPTION
 The project use django and neuralnetwork to predict strain at break,stress at break,tan deltaThe progect is designed by c/s.you can write csv file and set filename of model on train html.When you train a model after five minutes,you can predict strain at break,stress at break,tan delta in predict html.Csv file'format demand input variables of twelve,they are CO_W NH_Aper NH_W HS% SS% %aromati %cyclic CED solubility CORE_pctWgt sol_pctWgt Mtw,also output varables of output Strain at break,stress at break,tan delta.
+
+
+
+
 <2>ILLUSTRATE
 1)Trained model file in train/upload.
 2)Uploaded csv is used,they are deleted.Before deleted,thay are saved in train/upload
